@@ -2,6 +2,9 @@
 #include "nunchuck_funcs.h"
 
 
+#include "WProgram.h"
+void setup();
+void loop();
 int loop_cnt=0;
 
 byte accx,accy,zbut,cbut;
@@ -39,5 +42,18 @@ void loop()
     }
     loop_cnt++;
     delay(1);
+}
+
+
+int main(void)
+{
+	init();
+
+	setup();
+    
+	for (;;)
+		loop();
+        
+	return 0;
 }
 
