@@ -60,7 +60,7 @@ void loop()
     //sendRawData();
     
     //send just the area
-    sendArea();
+    if(lastArea == activeArea) sendArea();
 
   }
   loop_cnt++;
