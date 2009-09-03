@@ -35,18 +35,18 @@ boolean firstLoop = true;
 void setup()
 {
   areaSize = screenSize/3;
-  
+
   Serial.begin(115200);
   nunchuck_setpowerpins();
   nunchuck_init(); // send the initilization handshake
-  
+
   defineAreas();
 }
 
 void loop()
 {
   // every 100 msecs get new data
-  if( loop_cnt > 100 ) 
+  if( loop_cnt > 1 ) 
   { 
     loop_cnt = 0;
 
@@ -61,14 +61,15 @@ void loop()
     //figure out what area the acc is in
     newPos[0] = map(accx,east,west,0,800);
     newPos[1] = map(accy,south,north,800,0);
-    findArea();
-    
+
+
     //send absolute positions
     //sendRawData();
-    
-    //send just the area
-    sendArea();
 
+    //send just the area
+    findArea();
+    if(lastArea != activeArea) sendArea();
+    
   }
   loop_cnt++;
   delay(1);
@@ -83,8 +84,8 @@ void sendRawData()
   Serial.print(" ");
   Serial.print((byte)zbut,DEC);
   Serial.print(" ");
-  //Serial.println((byte)cbut,DEC);
-  //Serial.print(" ");
+  Serial.println((byte)cbut,DEC);
+  Serial.print(" ");
   Serial.println();
 }
 
@@ -127,6 +128,7 @@ void findArea()
     }
   }
 }
+
 
 
 int main(void)
