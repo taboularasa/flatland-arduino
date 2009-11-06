@@ -57,11 +57,11 @@ void loop()
 
 
     //send absolute positions
-    //sendRawData();
+    sendRawData();
 
     //send just the area
-    findArea();
-    if(lastArea != activeArea) sendArea();
+    //findArea();
+    //if(lastArea != activeArea) sendArea();
     
   }
   loop_cnt++;
@@ -78,8 +78,7 @@ void sendRawData()
   Serial.print((byte)zbut,DEC);
   Serial.print(" ");
   Serial.println((byte)cbut,DEC);
-  Serial.print(" ");
-  Serial.println();
+
 }
 
 void sendArea()
